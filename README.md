@@ -11,12 +11,13 @@ It is possible a direct call of the solution from the CMD.
   * **MSBuild_Wrapper_VS2015.bat** for MSBuild
   * **DevEnv_Wrapper_VS2015.bat** for DevEnv
 3. Inside these .bat files
-  * rarely correct paths to your real MSBuild and DevEnv from Visual Studio 2015.
-  * possibly comment out some workaround invocation that you do not need.
+  * rarely it requires to correct paths to your MSBuild and DevEnv Command Prompt for Visual Studio 2015 (see at the top of any .bat file).
+  * possibly to comment out some workaround invocation that you do not need.
 
 ### Notes
 * If your build-server uses some weird formatting for call parameters, you should reformat them to the standard form of MSBuild or DevEnv.
 * Remember, these batch files always return an exit code (EXIT %ERRORLEVEL%) to inform a build-server about result of an operation. 0 means success.
+* There are other troubles that fortunately covered by StackOverflow through Google.
 
 ### Description of the solution
 
