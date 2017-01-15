@@ -7,11 +7,11 @@ It is possible a direct call of the solution from the CMD.
 ### How to use
 
 1. Download this project.
-2. In your build-server replace the use of plugins/tasks for MSBuild or DevEnv on an existing Execute plugin/task to call an external program (".bat" file in our case).
+2. In your build-server replace the use of plugins/tasks for MSBuild or DevEnv on an existing Execute plugin/task that invokes an external program (".bat" file in our case).
   * **MSBuild_Wrapper_VS2015.bat** for MSBuild
   * **DevEnv_Wrapper_VS2015.bat** for DevEnv
 3. Inside these .bat files
-  * correct paths to your real MSBuild and DevEnv for Visual Studio 2015.
+  * correct paths to your real MSBuild and DevEnv from Visual Studio 2015.
   * comment out some workaround invocation that you do not need.
 
 ### Notes
@@ -21,11 +21,13 @@ It is possible a direct call of the solution from the CMD.
 ### Description of the solution
 
 Current solution uses a command line wrapper over MSBuild or DevEnv.com.
-MSBuild_Wrapper_VS2015.bat for MSBuild.
-DevEnv_Wrapper_VS2015.bat for DevEnv.com.
+* MSBuild_Wrapper_VS2015.bat for MSBuild.
+* DevEnv_Wrapper_VS2015.bat for DevEnv.com.
+
 You should use them with the same standard parameters as you may want to use for MSBuild or DevEnv.com. The parameters just will be passed directly ("%*" CMD notation).
 
-Actually, for well-known buld-servers for its MSBuild and DevEnv plugins/tasks it is possible to modify path settings to substitute MSBuild.exe and DevEnv.com by ".bat" files from this project.
+Actually, for well-known buld-servers for its MSBuild and DevEnv plugins/tasks it is possible to modify path settings to substitute MSBuild.exe and DevEnv.com by the ".bat" files from this project.
+
 I just have no resources to test it out well enough.
 
 ### More time expensive operations
