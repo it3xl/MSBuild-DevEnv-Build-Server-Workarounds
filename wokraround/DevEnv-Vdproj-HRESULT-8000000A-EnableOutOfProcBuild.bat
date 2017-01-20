@@ -12,6 +12,6 @@
   REG ADD HKCU\SOFTWARE\Microsoft\VisualStudio\14.0_Config\MSBuild /t REG_DWORD /v EnableOutOfProcBuild /d 0 /f
   @REM (use 12.0_Config for VS2013)
 
-  CALL %startRoot%util\exit_if_error %operation%
+  @CALL %startRoot%util\exit_if_error
 
 @ECHO END: %operation%

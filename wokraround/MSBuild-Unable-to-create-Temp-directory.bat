@@ -18,6 +18,6 @@
   
   @IF NOT EXIST %LOCALAPPDATA%\Temp (MKDIR %LOCALAPPDATA%\Temp)
 
-  CALL %startRoot%util\exit_if_error %operation%
+  @CALL %startRoot%util\exit_if_error
 
 @ECHO END: %operation%

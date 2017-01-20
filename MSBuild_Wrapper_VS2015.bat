@@ -1,9 +1,11 @@
 @REM it@it3xl.ru
 
-SET MSBuild_Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
-
+SET Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
 
 SET startRoot=%~dp0
+
+@CALL %startRoot%util\exit_if_error
+
 CALL %startRoot%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
 CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
@@ -17,9 +19,9 @@ CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
   @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
   @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 
-  CALL %MSBuild_Command_Prompt_Path%
+  CALL %Command_Prompt_Path%
 
-  CALL %startRoot%util\exit_if_error %operation%
+  @CALL %startRoot%util\exit_if_error
 @ECHO END: %operation%
 
 
@@ -28,7 +30,7 @@ CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
   @ECHO Parameters: %*
   @IF [%1] EQU [] (
     @ECHO Error. Exit. Parameters for the target call was not specified.
-    EXIT /B 30
+    EXIT 30
   )
   @ECHO #
   @ECHO #
@@ -36,9 +38,9 @@ CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
   @ECHO #
   @ECHO #
 
-  CALL %startRoot%util\exit_if_error %operation%
+  @CALL %startRoot%util\exit_if_error
 @ECHO END: %operation%
 
 @ECHO Exit MSBuild wrapper for VS2015 with the exit code: %ERRORLEVEL%
 @REM We will use the EXIT command to inform any Build-Server with a status of execution (0 means no errors).
-EXIT /B %ERRORLEVEL%
+EXIT %ERRORLEVEL%

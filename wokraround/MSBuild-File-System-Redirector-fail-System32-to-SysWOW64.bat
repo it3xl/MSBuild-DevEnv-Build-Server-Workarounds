@@ -49,6 +49,12 @@
   @SET USERPROFILE=%homeRootAbsolute%
   @ECHO %USERPROFILE%
   
-  CALL %startRoot%util\exit_if_error %operation%
+  
+  @REM The \TEMP folder must exist otherwise there will be errors. Nothing can not create it. Mad!
+  @IF NOT EXIST %homeRootAbsolute%\TEMP (MKDIR %homeRootAbsolute%\TEMP)
+  @REM The \AppData\Local\Temp folder must exist otherwise there will be errors. Nothing can not create it. Mad!
+  @IF NOT EXIST %LOCALAPPDATA%\Temp (MKDIR %LOCALAPPDATA%\Temp)
+  
+  @CALL %startRoot%util\exit_if_error
   
 @ECHO DONE: %operation%
