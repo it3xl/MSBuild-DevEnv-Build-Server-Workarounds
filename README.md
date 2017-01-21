@@ -12,7 +12,7 @@ It is possible a direct call of batch files from CMD.
   * **MSBuild_Wrapper_VS2015.bat** for MSBuild
   * **DevEnv_Wrapper_VS2015.bat** for DevEnv
 4. Inside these .bat files
-  * rarely it requires to correct paths to your MSBuild or DevEnv Command Prompt for Visual Studio (look for them at the top of the .bat files).
+  * rarely it requires to correct paths to your MSBuild or DevEnv Command Prompt for Visual Studio (look at the top of the .bat files).
   * uncomment workarounds invocations that you need. You may uncomment them all. This was tested.
 
 ### Notes
@@ -28,7 +28,7 @@ Current solution uses a command line wrapper over MSBuild or DevEnv.com.
 
 You should use them with the same standard parameters as you may want to use for MSBuild or DevEnv.com. The parameters just will be passed directly ("%*" CMD notation).
 
-Actually, for well-known buld-servers for its MSBuild and DevEnv plugins/tasks it is possible to modify path settings to substitute MSBuild.exe and DevEnv.com by the ".bat" files from this project.
+Actually, for well-known build-servers for its MSBuild and DevEnv build tasks it is possible to modify path settings to substitute MSBuild.exe and DevEnv.com by the ".bat" files from this project.
 
 I just have no resources to test it out well enough.
 
