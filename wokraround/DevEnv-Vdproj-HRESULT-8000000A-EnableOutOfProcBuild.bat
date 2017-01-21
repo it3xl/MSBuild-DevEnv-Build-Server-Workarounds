@@ -1,5 +1,3 @@
-@REM it@it3xl.ru
-
 @SET operation=DevEnv: Corrections of the Registry for EnableOutOfProcBuild.
 @ECHO START: %operation%
   @REM The woraround actual for building Vdproj by DevEnv from CMD where we will receive the next error:

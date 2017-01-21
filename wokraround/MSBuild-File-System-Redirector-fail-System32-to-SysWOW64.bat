@@ -1,5 +1,3 @@
-@REM it@it3xl.ru
-
 @SET operation=MSBuild: Preventing File System Redirector fail.
 @ECHO START: %operation%
   @REM This workaround is actual if your run unde Local System.

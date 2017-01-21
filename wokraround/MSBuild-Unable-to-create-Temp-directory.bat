@@ -1,5 +1,3 @@
-@REM it@it3xl.ru
-
 @SET operation=MSBuild: Preventing of a bug with a non existing Temp folder.
 @ECHO START: %operation%
   @REM This workaround is actual fot those who uses the "CompileWorkflowTask".
