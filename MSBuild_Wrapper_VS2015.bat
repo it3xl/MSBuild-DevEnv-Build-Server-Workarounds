@@ -1,11 +1,12 @@
-SET Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
-
 SET startRoot=%~dp0
 
 @CALL %startRoot%util\exit_if_error
 
-CALL %startRoot%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
-CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
+SET Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
+
+@REM Uncomment lines with workarounds.
+REM CALL %startRoot%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
+REM CALL %startRoot%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
 @SET operation=MSBuild: Prepare environment (by invoking the MSBuild Command Prompt for VS2015).
 @ECHO START: %operation%
