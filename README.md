@@ -2,17 +2,18 @@
 
 This project may be useful if you have some rough & tough errors with MSBuild and DevEnv on your build-server such as Jenkins, Teamcity, CruiseControl NET, etc.
 
-It is possible a direct call of the solution from the CMD.
+It is possible a direct call of batch files from CMD.
 
 ### How to use
 
 1. Download this project.
-2. In your build-server replace the use of plugins/tasks for MSBuild or DevEnv on an existing Execute plugin/task that invokes an external program (".bat" file in our case).
+2. In your build-server replace any use of build tasks for MSBuild or DevEnv for an existing Execute build task that invokes an external program (".bat" file in our case).
+3. Replace paths to MSBuild and DevEnv.com on paths to project's batch files
   * **MSBuild_Wrapper_VS2015.bat** for MSBuild
   * **DevEnv_Wrapper_VS2015.bat** for DevEnv
-3. Inside these .bat files
-  * rarely it requires to correct paths to your MSBuild and DevEnv Command Prompt for Visual Studio 2015 (see at the top of any .bat file).
-  * possibly to comment out some workaround invocation that you do not need.
+4. Inside these .bat files
+  * rarely it requires to correct paths to your MSBuild or DevEnv Command Prompt for Visual Studio (look for them at the top of the .bat files).
+  * uncomment workarounds invocations that you need. You may uncomment them all. This was tested.
 
 ### Notes
 * If your build-server uses some weird formatting for call parameters, you should reformat them to the standard form of MSBuild or DevEnv.
