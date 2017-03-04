@@ -1,6 +1,6 @@
 @SET operation=DevEnv: Corrections of the Registry for EnableOutOfProcBuild.
 @ECHO START: %operation%
-  @REM The woraround actual for building Vdproj by DevEnv from CMD where we will receive the next error:
+  @REM The workaround is actual for building a Vdproj by DevEnv from CMD where we will receive the next error:
   @REM Visual Studio has encountered an unexpected error.------ Starting pre-build validation for project 'Setup1' ------ 
   @REM ERROR: An error occurred while validating.  HRESULT = '8000000A'
   @REM URLs:
