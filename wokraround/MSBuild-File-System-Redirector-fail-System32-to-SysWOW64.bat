@@ -53,6 +53,6 @@
   @REM The \AppData\Local\Temp folder must exist otherwise there will be errors. Nothing can not create it. Mad!
   @IF NOT EXIST %LOCALAPPDATA%\Temp (MKDIR %LOCALAPPDATA%\Temp)
   
-  @CALL %rootPath%util\exit_if_error
+  @CALL %invokePath%util\exit_if_error
   
 @ECHO DONE: %operation%

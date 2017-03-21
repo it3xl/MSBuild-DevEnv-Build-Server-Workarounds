@@ -1,12 +1,12 @@
-SET rootPath="%~dp0"
+SET invokePath="%~dp0"
 
-@CALL %rootPath%util\exit_if_error
+@CALL %invokePath%util\exit_if_error
 
 SET Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
 
 @REM Uncomment lines with workarounds.
-REM CALL %rootPath%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
-REM CALL %rootPath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
+REM CALL %invokePath%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
+REM CALL %invokePath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
 @SET operation=MSBuild: Prepare environment (by invoking the MSBuild Command Prompt for VS2015).
 @ECHO START: %operation%
@@ -20,7 +20,7 @@ REM CALL %rootPath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
   CALL %Command_Prompt_Path%
 
-  @CALL %rootPath%util\exit_if_error
+  @CALL %invokePath%util\exit_if_error
 @ECHO END: %operation%
 
 
@@ -37,7 +37,7 @@ REM CALL %rootPath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
   @ECHO #
   @ECHO #
 
-  @CALL %rootPath%util\exit_if_error
+  @CALL %invokePath%util\exit_if_error
 @ECHO END: %operation%
 
 @ECHO Exit MSBuild wrapper for VS2015 with the exit code: %ERRORLEVEL%
