@@ -2,7 +2,9 @@
 
 This project may be useful if you have some rough & tough errors with MSBuild and DevEnv on your build-server such as Jenkins, Teamcity, CruiseControl NET, etc.
 
-It is possible a direct call of batch files from CMD.
+#### Tested and used on: Jenkins, Teamcity, CruiseControl NET.
+
+Also you can use a direct CMD-call of batch-files from this repo.
 
 ### How to use
 
