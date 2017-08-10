@@ -1,0 +1,43 @@
+XCOPY %promotingPath%\* %uatPathRoot%\ /E /I /Y
+  /E Copy folders and subfolders, including Empty folders.
+  /I If in doubt always assume the destination is a folder e.g. when the destination does not exist.
+  /Y Suppress prompt to confirm overwriting a file.
+
+
+@REM For copying
+ROBOCOPY %promotingPath% %uatPathRoot% /E   /Z   /PURGE   /W:1 /R:300 /TBD   /NP /FP /NS /V
+
+@REM For moving
+@REM This method is much slower then MOVE (util\network-MOVE.bat)
+ROBOCOPY %promotingPath% %uatPathRoot% /E   /Z /MOVE   /PURGE   /W:1 /R:300 /TBD   /NP /FP /NS /V
+
+
+https://ss64.com/nt/robocopy.html
+https://technet.microsoft.com/library/cc733145(v=ws.10).aspx
+
+Source
+/E : Copy Subfolders, including Empty Subfolders.
+
+Copy options
+/Z : Copy files in restartable mode (survive network glitch).
+/MOVE : Move files and dirs (delete from source after copying).
+
+Destination options
+/PURGE : Delete dest files/folders that no longer exist in source.
+/MIR : MIRror a directory tree - equivalent to /PURGE plus all subfolders (/E)
+
+Retry options
+/W:n : Wait time between retries - default is 30 seconds.
+/R:n : Number of Retries on failed copies - default is 1 million.
+/TBD : Wait for sharenames To Be Defined (retry error 67).
+
+Logging options
+/NP : No Progress - don’t display % copied.
+/FP : Include Full Pathname of files in the output.
+/NS : No Size - don’t log file sizes.
+/V : Produce Verbose output log, showing skipped files
+/NDL : No Directory List - don’t log directory names.
+
+
+
+

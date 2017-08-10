@@ -1,12 +1,22 @@
-SET invokePath="%~dp0"
+@SETLOCAL
+@REM 
+@ECHO OFF
 
-@CALL %invokePath%util\exit_if_error
+SET scriptName=%~n0
+@ECHO %scriptName%
+
+SET invokePath=%~dp0.
+@REM The CALL preserves quotes for ~dp0. Prevents problems "Extra quotes inside a path" if this file invoked with a path with quotes.
+SET invokePath=%invokePath:"=%
+CALL "%invokePath%\util\set-evnironment.bat"
+
+@CALL %env_qUtil%\exit_if_error
 
 SET Command_Prompt_Path="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
 
 @REM Uncomment lines with workarounds.
-REM CALL %invokePath%wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
-REM CALL %invokePath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
+REM CALL %env_qManager%\wokraround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
+REM CALL %env_qManager%\wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
 @SET operation=MSBuild: Prepare environment (by invoking the MSBuild Command Prompt for VS2015).
 @ECHO START: %operation%
@@ -20,7 +30,7 @@ REM CALL %invokePath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
 
   CALL %Command_Prompt_Path%
 
-  @CALL %invokePath%util\exit_if_error
+  @CALL %env_qUtil%\exit_if_error
 @ECHO END: %operation%
 
 
@@ -37,7 +47,7 @@ REM CALL %invokePath%wokraround\MSBuild-Unable-to-create-Temp-directory.bat
   @ECHO #
   @ECHO #
 
-  @CALL %invokePath%util\exit_if_error
+  @CALL %env_qUtil%\exit_if_error
 @ECHO END: %operation%
 
 @ECHO Exit MSBuild wrapper for VS2015 with the exit code: %ERRORLEVEL%

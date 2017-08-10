@@ -1,7 +1,8 @@
-SETLOCAL
+@SETLOCAL
+@REM @ECHO ON
 
-@ECHO Promote starting
-CALL %_util%\exit_if_error
+@ECHO %~n0
+CALL %env_qUtil%\exit_if_error
 
 SET rootPromoteFolderName=%1
 IF [%rootPromoteFolderName%] EQU [] GOTO BrokenInputParameter
@@ -10,77 +11,63 @@ IF [%accumPath%] EQU [] GOTO BrokenEnvironment
 IF [%buildName%] EQU [] GOTO BrokenEnvironment
 
 
+@REM ! Importaln. No white spaces in this path!
 SET rootSupportSharedFolder=\\some\share\distrib\folder
+
 SET currentPromoteRootPath=%rootSupportSharedFolder%\%rootPromoteFolderName%
-SET promotingPathRoot="%currentPromoteRootPath%\.last promotions"
-SET prodPathRoot="%currentPromoteRootPath%\PROD"
+SET $promotionsFolderName=.last promotions
+SET promotingPathRoot=%currentPromoteRootPath%\%$promotionsFolderName%
+SET promotingPathRootQ="%promotingPathRoot%"
+SET promotingPath="%currentPromoteRootPath%\%$promotionsFolderName%\%buildName%"
+
+SET prodPathRoot=%currentPromoteRootPath%\PROD
 SET uatPathRoot="%currentPromoteRootPath%\UAT"
 
-SET prodMarkFolder=%prodPathRoot%\"x- now promoting %buildName%"
-MKDIR %prodMarkFolder%
-SET uatMarkFolder=%uatPathRoot%\"! now promoting %buildName%"
-MKDIR %uatMarkFolder%
+SET prodMarkFolder="%prodPathRoot%\x- now copying %buildName%"
+IF NOT EXIST %prodMarkFolder% MKDIR %prodMarkFolder%
+SET uatMarkFolder=%uatPathRoot%\"! now copying %buildName%"
+IF NOT EXIST %uatMarkFolder% MKDIR %uatMarkFolder%
 
 REM Put to temp promoting fodler.
-MKDIR %promotingPathRoot% 2> NUL
-SET promotingPath=%promotingPathRoot%\"%buildName%"
+IF NOT EXIST %promotingPathRootQ% MKDIR %promotingPathRootQ%
 
-MKDIR %promotingPath%
-XCOPY %accumPath%\* %promotingPath%\ /E /I /Y
+@REM <Speed up by ROBOCOPY>
+@REM In case of a slow network near the Build-Machine the copying from the Build-Machine to a remote share is slow.
+@REM Workaround. Copy a before promoted folder and update it by ROBOCOPY from the Build-Machine folder.
+SET lastPromotionDir=""
+FOR /F "eol=: delims=" %%F IN ('DIR /B /O:-D /A:D %promotingPathRootQ%') DO (
+  SET lastPromotionDir="%promotingPathRoot%\%%F"
+  GOTO LastPromotion
+)
+:LastPromotion
+IF NOT EXIST %promotingPath% MKDIR %promotingPath%
+IF EXIST %lastPromotionDir% (
+  ECHO ! Speed up by a local copying with a subsequent updating by ROBOCOPY !
+  ECHO ! Start local outdated copy creation.
+  CALL %env_qUtil%\ROBOCOPY_copy.bat %lastPromotionDir% %promotingPath%
+)
+@REM </Speed up by ROBOCOPY>
+CALL %env_qUtil%\ROBOCOPY_copy.bat %accumPath% %promotingPath%
+
 
 REM Promote to Productions artifacts.
-SET prodTempFolder=%prodPathRoot%\"x-%buildName%"
-XCOPY %promotingPath%\* %prodTempFolder%\ /E /I /Y
-@REM
-ECHO MOVE %prodTempFolder% %prodPathRoot%\"%buildName%"
-CALL %_util%\network-MOVE.bat %prodTempFolder% %prodPathRoot%\"%buildName%"
 RD /S /Q %prodMarkFolder%
-CALL %_util%\cleanup_old_folders.bat 25 %prodPathRoot%
+SET prodTempFolder="%prodPathRoot%\x-copying-%buildName%"
+CALL %env_qUtil%\ROBOCOPY_copy.bat %promotingPath% %prodTempFolder%
+CALL %env_qUtil%\network-delete-dir.bat "%prodPathRoot%\%buildName%"
+CALL %env_qUtil%\network-MOVE.bat %prodTempFolder% "%prodPathRoot%\%buildName%"
+
+CALL %env_qUtil%\cleanup_old_folders.bat 25 "%prodPathRoot%"
+
 
 REM Promote to UAT artifacts.
-CALL %_util%\network-clean-dir.bat %uatPathRoot%
-@REM Check UAT is empty.
-SET uatEmpty=true
-FOR /F "delims=" %%i IN ('DIR %uatPathRoot% /A-D /B /O:GN 2^>NUL') DO SET uatEmpty=false
-IF %uatEmpty% NEQ true (
-  @ECHO.
-  @ECHO Warning! Not all files were deleted in %uatPathRoot%
-  @ECHO.
-  
-  FOR /F "delims=" %%i IN ('DIR %uatPathRoot% /A-D /B /S /O:GN 2^>NUL') DO (
-    @REM Compromises content of remaining files.
-    (TYPE nul> "%%i") 2> NUL
-    @REM Tries to delete remaining files.
-    DEL /Q /F "%%i" 2> NUL
-  )
-  
-  @REM Last chance to empty the folder.
-  CALL %_util%\clean-network-dir %uatPathRoot%
-  
-  @REM Check UAT is empty.
-  SET uatEmpty=true
-  FOR /F "delims=" %%i IN ('DIR %uatPathRoot% /A-D /B /O:GN 2^>NUL') DO SET uatEmpty=false
-  
-)
-
-MKDIR %uatMarkFolder%
-IF %uatEmpty% EQU true (
-  @ECHO Copying to UAT foder.
-  XCOPY %promotingPath%\* %uatPathRoot%\ /E /I /Y
-  MKDIR %uatPathRoot%\"! done promote %buildName%"
-) ELSE (
-  @ECHO.
-  @ECHO Error! Sorry, still can't clear %uatPathRoot%
-  @ECHO Copy UAT files from %promotingPath%
-  @ECHO.
-  
-  MKDIR %uatPathRoot%\"! Error promote. Copy %buildName% from PROD"
-)
-RD /S /Q %uatMarkFolder%
+SET uatTempFolder="%currentPromoteRootPath%\UAT-copying-%buildName%"
+CALL %env_qUtil%\ROBOCOPY_copy.bat %promotingPath% %uatTempFolder%
+CALL %env_qUtil%\network-delete-dir.bat %uatPathRoot%
+CALL %env_qUtil%\network-MOVE.bat %uatTempFolder% %uatPathRoot%
 
 
-
-CALL %_util%\cleanup_old_folders.bat 5 %promotingPathRoot%
+CALL %env_qUtil%\cleanup_old_folders.bat 5 %promotingPathRootQ%
 
 
 

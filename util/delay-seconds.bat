@@ -1,13 +1,15 @@
-SETLOCAL
+@SETLOCAL
 
 SET seconds=%1
-@ECHO delay-seconds.bat / Delay %seconds% seconds.
+@ECHO %~n0 / Delay %seconds% seconds.
 IF [%seconds%] EQU [] GOTO BrokenInputParameter
-
-@CALL %_util%\exit_if_error
 
 
 @CHOICE /N /C y /D y /T %seconds% > NUL
+
+@REM Will exit with 0 exit code to prevent spam to ERRORLEVEL from the CHOICE command.
+@EXIT /B 0
+
 
 
 @GOTO :EOF

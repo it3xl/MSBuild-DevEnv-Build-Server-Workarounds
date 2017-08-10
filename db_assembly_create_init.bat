@@ -1,7 +1,7 @@
-SETLOCAL
+@SETLOCAL
 
-ECHO db_assembly_create_init.bat
-CALL %_util%\exit_if_error
+ECHO %~n0
+CALL %env_qUtil%\exit_if_error
 
 @REM Set UTF-8 encoding.
 CHCP 65001

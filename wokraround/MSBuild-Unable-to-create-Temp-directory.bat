@@ -13,6 +13,6 @@
   
   @IF NOT EXIST %LOCALAPPDATA%\Temp (MKDIR %LOCALAPPDATA%\Temp)
 
-  @CALL %_util%\exit_if_error
+  @CALL %env_qUtil%\exit_if_error
 
 @ECHO END: %operation%

@@ -1,6 +1,6 @@
 @SET operation=DevEnv: Corrections of the Registry for EnableOutOfProcBuild.
 @ECHO START: %operation%
-  @REM The workaround is actual for building a Vdproj by DevEnv from CMD where we will receive the next error:
+  @REM The woraround actual for building Vdproj by DevEnv from CMD where we will receive the next error:
   @REM Visual Studio has encountered an unexpected error.------ Starting pre-build validation for project 'Setup1' ------ 
   @REM ERROR: An error occurred while validating.  HRESULT = '8000000A'
   @REM URLs:
@@ -10,6 +10,6 @@
   REG ADD HKCU\SOFTWARE\Microsoft\VisualStudio\14.0_Config\MSBuild /t REG_DWORD /v EnableOutOfProcBuild /d 0 /f
   @REM (use 12.0_Config for VS2013)
 
-  @CALL %_util%\exit_if_error
+  @CALL %env_qUtil%\exit_if_error
 
 @ECHO END: %operation%

@@ -1,7 +1,7 @@
-SETLOCAL
+@SETLOCAL
 
-@ECHO Clean dir
-@CALL %_util%\exit_if_error
+@ECHO %~n0
+@CALL %env_qUtil%\exit_if_error
 
 SET clean_dir_path=%1
 @ECHO Clean folder %clean_dir_path%

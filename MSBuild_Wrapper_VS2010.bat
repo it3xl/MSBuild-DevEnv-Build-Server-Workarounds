@@ -1,5 +1,14 @@
+@SETLOCAL
+@REM 
+@ECHO OFF
 
-CALL "%~dp0util\set-evnironment.bat"
+SET scriptName=%~n0
+@ECHO %scriptName%
+
+SET invokePath=%~dp0.
+@REM The CALL preserves quotes for ~dp0. Prevents problems "Extra quotes inside a path" if this file invoked with a path with quotes.
+SET invokePath=%invokePath:"=%
+CALL "%invokePath%\util\set-evnironment.bat"
 
 @ECHO Prepare MsBuild environment (by invoking the Visual Studio Command Prompt for VS2010).
   @REM VS2010 has no "MSBuild Command Prompt"!

@@ -1,7 +1,7 @@
-SETLOCAL
+@SETLOCAL
 
-ECHO db_assembly_create.bat
-CALL %_util%\exit_if_error
+ECHO %~n0
+CALL %env_qUtil%\exit_if_error
 
 @REM Set UTF-8 encoding.
 CHCP 65001
@@ -22,7 +22,7 @@ SET sqlScript=%accumAssemblyPath%assemblies.register.sql
 @ECHO CREATE ASSEMBLY [%assemblyName%]>> %sqlScript%
 @ECHO   AUTHORIZATION dbo>> %sqlScript%
 @ECHO   FROM>> %sqlScript%
-CALL %_util%\AssemblyToSqlHexadecimal.exe %dllPath%>> %sqlScript%
+CALL %env_qUtil%\AssemblyToSqlHexadecimal.exe %dllPath%>> %sqlScript%
 @ECHO.>> %sqlScript%
 @ECHO   WITH PERMISSION_SET = SAFE>> %sqlScript%
 @ECHO GO>> %sqlScript%

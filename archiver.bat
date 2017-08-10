@@ -1,7 +1,7 @@
-SETLOCAL
+@SETLOCAL
 
-ECHO archiver.bat / Create an archive for a corrent build.
-CALL %_util%\exit_if_error
+ECHO %~n0 / Create an archive for a current build.
+CALL %env_qUtil%\exit_if_error
 
 SET buildName=%1
 IF [%buildName%] EQU [] GOTO BrokenInputParameter
@@ -13,13 +13,13 @@ IF [%buildArtifactsFolder%] EQU [] GOTO BrokenEnvironment
 
 
 SET archType=7z
-REM accumPath already contains %buildName% at the end.
+REM accumPath must already contain the "%buildName%" at the end.
 SET archiveAccumPath=%accumPath%.%archType%
 
 SET archiveArtifactPath=%buildArtifactsFolder%\%buildName%.%archType%
 
 REM Create an archive.
-REM "C:\Program Files\WinRar\winrar.exe" a -afzip -r0 %accumPath%.zip *.*
+@REM "C:\Program Files\WinRar\winrar.exe" a -afzip -r0 %accumPath%.zip *.*
 "C:\Program Files\7-Zip\7z.exe" a %archiveAccumPath% "%accumPath%\*"
 ECHO ERRORLEVEL %ERRORLEVEL%
 
