@@ -4,8 +4,10 @@
 @CALL %env_qUtil%\exit_if_error
 
 SET del_dir_path=%1
+IF [%del_dir_path%] EQU [] EXIT 1001
+IF [%del_dir_path%] EQU [""] EXIT 1001
+
 @ECHO delete foder %del_dir_path%
-IF [%del_dir_path%] EQU [] GOTO BrokenInputParameter
 
 IF NOT EXIST %del_dir_path% (
   @ECHO no such a folder %del_dir_path%
@@ -97,9 +99,3 @@ IF EXIST %del_dir_path% (
 
 
 
-@GOTO :EOF
-
-:BrokenInputParameter
-ECHO  !#!  Interrupted. Not all input parameters have been set to call this script!
-ECHO.
-EXIT 333

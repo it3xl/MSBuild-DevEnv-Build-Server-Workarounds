@@ -1,8 +1,11 @@
 @SETLOCAL
 
+@ECHO %~n0
+
 SET seconds=%1
+IF [%seconds%] EQU [] EXIT 1001
+
 @ECHO %~n0 / Delay %seconds% seconds.
-IF [%seconds%] EQU [] GOTO BrokenInputParameter
 
 
 @CHOICE /N /C y /D y /T %seconds% > NUL
@@ -11,10 +14,3 @@ IF [%seconds%] EQU [] GOTO BrokenInputParameter
 @EXIT /B 0
 
 
-
-@GOTO :EOF
-
-:BrokenInputParameter
-ECHO  !#!  Interrupted. Not all input parameters have been set to call this script!
-ECHO.
-EXIT 333

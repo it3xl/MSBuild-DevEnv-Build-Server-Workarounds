@@ -7,10 +7,13 @@
 
 SET source=%1
 @ECHO source: %source%
-IF [%source%] EQU [] GOTO BrokenInputParameter
+IF [%source%] EQU [] EXIT 1001
+IF [%source%] EQU [""] EXIT 1001
+
 SET target=%2
 @ECHO target: %target%
-IF [%target%] EQU [] GOTO BrokenInputParameter
+IF [%target%] EQU [] EXIT 1002
+IF [%target%] EQU [""] EXIT 1002
 
 
 @REM We should postpone because win-network bug "Access is denied. 0 dir(s) moved."
@@ -118,6 +121,7 @@ IF EXIST %source% (
 
 IF EXIST %source% (
   @ECHO Cannot move the folder %source%
+  @ECHO Possibly it contains files with long names or it is long itself.
   EXIT 223
 )
 
@@ -126,12 +130,3 @@ IF EXIST %source% (
 
 
 
-
-
-
-@GOTO :EOF
-
-:BrokenInputParameter
-ECHO  !#!  Interrupted. Not all input parameters have been set to call this script!
-ECHO.
-EXIT 333

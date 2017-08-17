@@ -5,10 +5,13 @@
 
 SET source=%1
 @ECHO source: %source%
-IF [%source%] EQU [] GOTO BrokenInputParameter
+IF [%source%] EQU [] EXIT 1001
+IF [%source%] EQU [""] EXIT 1001
+
 SET target=%2
 @ECHO target: %target%
-IF [%target%] EQU [] GOTO BrokenInputParameter
+IF [%target%] EQU [] EXIT 1002
+IF [%target%] EQU [""] EXIT 1002
 
 @REM Ensures the copying process
 ROBOCOPY %source% %target% /E   /Z   /PURGE   /W:1 /R:300 /TBD   /NP /FP /NS /V
@@ -53,9 +56,3 @@ EXIT %ERRORLEVEL%
 
 
 
-@GOTO :EOF
-
-:BrokenInputParameter
-ECHO  !#!  Interrupted. Not all input parameters have been set to call this script!
-ECHO.
-EXIT 333

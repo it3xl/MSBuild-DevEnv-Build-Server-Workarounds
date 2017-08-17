@@ -1,20 +1,26 @@
 @SETLOCAL
 
-ECHO %~n0
-CALL %env_qUtil%\exit_if_error
+@ECHO %~n0
 
-@REM Set UTF-8 encoding.
-CHCP 65001
+CHCP
+@REM Seting UTF-8 encoding.
+@REM CHCP 65001
+
+CALL %env_qUtil%\exit_if_error
 
 SET assemblyName=%1
 IF [%assemblyName%] EQU [] GOTO BrokenInputParameter
+
 SET dllPath=%2
 IF [%dllPath%] EQU [] GOTO BrokenInputParameter
+IF [%dllPath%] EQU [""] GOTO BrokenInputParameter
+
 SET accumAssemblyPath=%3
 IF [%accumAssemblyPath%] EQU [] GOTO BrokenInputParameter
+IF [%accumAssemblyPath%] EQU [""] GOTO BrokenInputParameter
 
 
-SET sqlScript=%accumAssemblyPath%assemblies.register.sql
+SET sqlScript=%accumAssemblyPath%\assemblies.register.sql
 
 
 @ECHO.>> %sqlScript%
@@ -38,4 +44,4 @@ CALL %env_qUtil%\AssemblyToSqlHexadecimal.exe %dllPath%>> %sqlScript%
 :BrokenInputParameter
 ECHO  !#!  Interrupted. Not all input parameters have been set to call this script!
 ECHO.
-EXIT 333
+EXIT 1000
