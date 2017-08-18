@@ -1,5 +1,9 @@
 @SETLOCAL
 
+@REM 
+ECHO OFF
+
+
 @ECHO %~n0
 @CALL %env_qUtil%\exit_if_error
 
