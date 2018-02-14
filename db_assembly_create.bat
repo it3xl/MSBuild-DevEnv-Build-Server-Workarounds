@@ -1,6 +1,6 @@
 @SETLOCAL
 
-@ECHO %~n0
+@ECHO %~nx0
 
 CHCP
 @REM Seting UTF-8 encoding.

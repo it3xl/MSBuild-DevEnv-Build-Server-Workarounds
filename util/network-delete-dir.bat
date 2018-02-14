@@ -4,7 +4,7 @@
 ECHO OFF
 
 
-@ECHO %~n0
+@ECHO %~nx0
 @CALL %env_qUtil%\exit_if_error
 
 SET del_dir_path=%1

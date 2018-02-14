@@ -1,11 +1,11 @@
 @SETLOCAL
 
-@ECHO %~n0
+@ECHO %~nx0
 
 SET seconds=%1
 IF [%seconds%] EQU [] EXIT 1001
 
-@ECHO %~n0 / Delay %seconds% seconds.
+@ECHO %~nx0 / Delay %seconds% seconds.
 
 
 @CHOICE /N /C y /D y /T %seconds% > NUL

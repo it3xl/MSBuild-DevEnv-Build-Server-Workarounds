@@ -2,7 +2,7 @@
 @REM 
 @ECHO OFF
 
-SET scriptName=%~n0
+SET scriptName=%~nx0
 @ECHO %scriptName%
 
 SET invokePath=%~dp0.

@@ -1,7 +1,7 @@
 @SETLOCAL
 @REM @ECHO ON
 
-@ECHO %~n0
+@ECHO %~nx0
 CALL %env_qUtil%\exit_if_error
 
 SET rootPromoteFolderName=%1

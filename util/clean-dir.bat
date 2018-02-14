@@ -1,6 +1,6 @@
 @SETLOCAL
 
-@ECHO %~n0
+@ECHO %~nx0
 @CALL %env_qUtil%\exit_if_error
 
 SET clean_dir_path=%1

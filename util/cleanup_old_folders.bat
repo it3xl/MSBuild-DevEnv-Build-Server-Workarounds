@@ -1,6 +1,6 @@
 @SETLOCAL
 
-@ECHO %~n0
+@ECHO %~nx0
 @CALL %env_qUtil%\exit_if_error
 
 SET cleanup_skip_newest_amount=%1
@@ -23,4 +23,4 @@ FOR /F "skip=%cleanup_skip_newest_amount% eol=: delims=" %%F IN ('DIR /B /O:-D /
 )
 
 @REM Without the next simple ECHO I am receiving ERRORLEVEL = 1 if there's no need to delete files.
-ECHO End of %~n0
+ECHO End of %~nx0

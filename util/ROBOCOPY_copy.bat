@@ -1,6 +1,6 @@
 @SETLOCAL
 
-@ECHO %~n0
+@ECHO %~nx0
 @CALL %env_qUtil%\exit_if_error
 
 SET source=%1

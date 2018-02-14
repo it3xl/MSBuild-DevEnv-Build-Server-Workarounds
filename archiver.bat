@@ -1,6 +1,6 @@
 @SETLOCAL
 
-ECHO %~n0
+ECHO %~nx0
 ECHO Create an archive for a current build.
 
 CALL %env_qUtil%\exit_if_error
