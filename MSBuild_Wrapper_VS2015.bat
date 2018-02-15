@@ -8,7 +8,7 @@ SET scriptName=%~nx0
 SET invokePath=%~dp0.
 @REM The CALL preserves quotes for ~dp0. Prevents problems "Extra quotes inside a path" if this file invoked with a path with quotes.
 SET invokePath=%invokePath:"=%
-CALL "%invokePath%\util\set-evnironment.bat"
+CALL "%invokePath%\util\set-environment.bat"
 
 @CALL %env_qUtil%\exit_if_error
 
