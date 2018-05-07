@@ -31,4 +31,3 @@ ECHO CD is set to %CD%
 
 
 @ECHO End %~nx0 & ECHO:
-pause
