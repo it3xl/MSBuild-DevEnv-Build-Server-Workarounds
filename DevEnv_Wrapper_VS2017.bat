@@ -14,6 +14,7 @@ CALL %env_qUtil%\exit_if_error
 
 
 @REM Uncomment the following workarounds as needed.
+REM CALL %env_qManager%\workaround\DevEnv-Vdproj-VS2017_Professional-HRESULT-8000000A-EnableOutOfProcBuild.bat
 CALL %env_qManager%\workaround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
 REM CALL %env_qManager%\workaround\MSBuild-Unable-to-create-Temp-directory.bat
 
@@ -26,14 +27,17 @@ ECHO Prepare the development environment.
 @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
 @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 @REM
-SET dev_cmd="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsMSBuildCmd.bat"
+SET dev_cmd="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools\VsDevCmd.bat"
 ECHO CALL %dev_cmd%
 CALL %dev_cmd%
 CALL %env_qUtil%\exit_if_error
 
 
-ECHO CALL MSBuild %*
-CALL MSBuild %*
+@REM We have to use exactly the "DevEnv.COM" wrapper of the VS IDE "DevEnv.EXE". There are some troubles with "DevEnv.EXE".
+@REM So, here we explicitly prevent cases where ".COM" not the first value at the PATHEXT environment variable.
+@REM Example of the problem - PATHEXT: ".EXE;.COM;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"
+ECHO CALL DevEnv.COM %*
+CALL DevEnv.COM %*
 CALL %env_qUtil%\exit_if_error
 
 

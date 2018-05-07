@@ -1,8 +1,8 @@
 @SET operation=MSBuild: Preventing File System Redirector fail.
 @ECHO START: %operation%
-  @REM This workaround is actual if your run unde Local System.
+  @REM This workaround is actual if your run under the Local System account.
   @REM
-  @REM For any build under system local account (Local System for our Build-Server's Win Service) there is a bug for implicit switching
+  @REM For any build under the system local account (Local System for our Build-Server's Win Service) there is a bug for implicit switching
   @REM  from C:\Windows\System32\config\systemprofile to C:\Windows\SysWOW64\config\systemprofile\AppData
   @REM A workaround for this is to use x64 MSBuild but we have no this option for the DevEnv calling.
   @REM
