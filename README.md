@@ -6,6 +6,8 @@ This project may be useful if you have some rough & tough errors with MSBuild an
 
 Also you can use a direct CMD-call of batch-files from this repo.
 
+**Update** Visual Studio 2017 support was added.
+
 ### How to use
 
 1. Download this project.
@@ -46,7 +48,7 @@ It uses from half to 3 seconds depend on your hardware / virtual environment.
 All was tested and solved on the next environment.
 
 * Windows 7 x64.
-* Visual Studio 2015 SP1 installed over VS 2010.
+* Visual Studio 2015 SP1 and VS 2017 installed over VS 2010.
 * An installer's admin account can't access the Internet.
 * Windows SDK 10 can't be installed (because of a unsolved MS bug) and rolled back.
 
