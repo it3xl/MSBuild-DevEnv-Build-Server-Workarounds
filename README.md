@@ -6,7 +6,7 @@ This project may be useful if you have some rough & tough errors with MSBuild an
 
 Also you can use a direct CMD-call of batch-files from this repo.
 
-**Update** Visual Studio 2017 support was added.
+**Update:** Visual Studio 2017 support was added.
 
 ### How to use
 
