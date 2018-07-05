@@ -1,45 +1,5 @@
 @SETLOCAL
 
-
-
-
-ECHO:
-ECHO !!!!!!!!!
-ECHO This util file stamp_build_label.bat is depricated and will be deleted.
-ECHO Use stamp_build_label.depth_1.bat instead.
-ECHO !!!!!!!!!
-ECHO:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ECHO %~nx0
 CALL %q_env_cmd_util%\exit_if_error
 
@@ -58,6 +18,10 @@ ECHO Build num: %buildLabel%>"%accumPath%\.build_num.config"
 @REM Write build number to first level deep files.
 FOR /F "delims=" %%i IN ('DIR "%accumPath%" /A:D /B /O:N') DO (
   ECHO Build num: %buildLabel%>"%accumPath%\%%i\.build_num.config"
+  
+  FOR /F "delims=" %%y IN ('DIR "%accumPath%\%%i" /A:D /B /O:N') DO (
+    ECHO Build num: %buildLabel%>"%accumPath%\%%i\%%y\.build_num.config"
+  )
 )
 
 

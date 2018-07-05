@@ -1,45 +1,5 @@
 @SETLOCAL
 
-
-
-
-ECHO:
-ECHO !!!!!!!!!
-ECHO This util file stamp_build_label.bat is depricated and will be deleted.
-ECHO Use stamp_build_label.depth_1.bat instead.
-ECHO !!!!!!!!!
-ECHO:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ECHO %~nx0
 CALL %q_env_cmd_util%\exit_if_error
 
