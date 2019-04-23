@@ -50,7 +50,7 @@ All was tested and solved on the next environment.
 * Windows 7 x64.
 * Visual Studio 2015 SP1 and VS 2017 installed over VS 2010.
 * An installer's admin account can't access the Internet.
-* Windows SDK 10 can't be installed (because of a unsolved MS bug) and rolled back.
+* Windows SDK 10 can't be installed (because of an unsolved MS bug) and rolled back.
 
 ### Workarounds and know problems
 
