@@ -52,13 +52,5 @@ All was tested and solved on the next environment.
 * An installer's admin account can't access the Internet.
 * Windows SDK 10 can't be installed (because of an unsolved MS bug) and rolled back.
 
-### Workarounds and know problems
 
-#### MSBUILD : error MSB4166: Child node "2" exited prematurely.
-    MSBUILD : error MSB4166: Child node "2" exited prematurely. Shutting down.
-    Diagnostic information may be found in files in "C:\Build-Server-Home\TEMP\" and will be named MSBuild_*.failure.txt.
-    This location can be changed by setting the MSBUILDDEBUGPATH environment variable to a different directory.
-
-You are runing you build machine not under the local admin account.  
-Give this account full rights on `C:\Build-Server-Home\`
 
