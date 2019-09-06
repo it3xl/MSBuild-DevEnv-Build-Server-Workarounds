@@ -34,7 +34,7 @@ ECHO Prepare the development environment.
 @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
 @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 @REM
-SET dev_cmd="C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
+SET dev_cmd="%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
 ECHO CALL %dev_cmd%
 CALL %dev_cmd%
 CALL %env_qUtil%\exit_if_error

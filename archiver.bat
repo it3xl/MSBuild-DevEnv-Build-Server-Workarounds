@@ -25,8 +25,8 @@ SET archType=7z
 SET q_archivePath="%accumPath%\..\%buildLabel%.%archType%"
 
 REM Create an archive.
-@REM "C:\Program Files\WinRar\winrar.exe" a -afzip -r0 %accumPath%.zip *.*
-"C:\Program Files\7-Zip\7z.exe" a %q_archivePath% "%accumPath%\*"
+@REM "%ProgramFiles%\WinRar\winrar.exe" a -afzip -r0 %accumPath%.zip *.*
+"%ProgramFiles%\7-Zip\7z.exe" a %q_archivePath% "%accumPath%\*"
 ECHO ERRORLEVEL %ERRORLEVEL%
 
 

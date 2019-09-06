@@ -8,8 +8,11 @@ ECHO Start %scriptName%
 SET invokePath=%~dp0.
 @REM The CALL preserves quotes for ~dp0. Prevents problems "Extra quotes inside a path" if this file invoked with a path with quotes.
 SET invokePath=%invokePath:"=%
-CALL "%invokePath%\util\set-environment.bat"
 
+CALL "%invokePath%\util\set-environment.bat"
+CALL %env_qUtil%\exit_if_error
+
+CALL "%invokePath%\set-manager-environment.bat"
 CALL %env_qUtil%\exit_if_error
 
 
@@ -34,9 +37,8 @@ ECHO Prepare the development environment.
 @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
 @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 @REM
-SET dev_cmd="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Tools\VsDevCmd.bat"
-ECHO CALL %dev_cmd%
-CALL %dev_cmd%
+ECHO CALL %env_vs2017_dev_cmd%
+CALL %env_vs2017_dev_cmd%
 CALL %env_qUtil%\exit_if_error
 
 

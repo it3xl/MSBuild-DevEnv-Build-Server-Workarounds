@@ -15,7 +15,7 @@ SET current_path="%CD%"
 REM Bug! The DisableOutOfProcBuild.exe doesn't work if the current directory of CMD doesn't set to the installation location of DisableOutOfProcBuild.exe.
 ECHO Seting the current path to the DisableOutOfProcBuild.exe installation folder.
 @REM
-CD "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
+CD "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild"
 ECHO:
 CALL DisableOutOfProcBuild.exe
 
