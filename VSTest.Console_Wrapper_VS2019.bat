@@ -12,7 +12,7 @@ SET invokePath=%invokePath:"=%
 CALL "%invokePath%\util\set-environment.bat"
 CALL %env_qUtil%\exit_if_error
 
-CALL "%invokePath%\set-manager-environment.2017.bat"
+CALL "%invokePath%\set-manager-environment.2019.bat"
 CALL %env_qUtil%\exit_if_error
 
 
@@ -23,12 +23,6 @@ REM We can use "-nodeReuse:False" with "-maxCpuCount" on a MSBuild call but it i
 SET MSBUILDDISABLENODEREUSE=1
 
 
-@REM Uncomment the following workarounds as needed.
-REM CALL %env_qManager%\workaround\DevEnv-Vdproj-VS2017_Professional-HRESULT-8000000A-EnableOutOfProcBuild.bat
-CALL %env_qManager%\workaround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
-REM CALL %env_qManager%\workaround\MSBuild-Unable-to-create-Temp-directory.bat
-
-
 ECHO Prepare the development environment.
 @REM We need to invoke the exact preparation script here because after migration from VS2010 to VS2015 we got a broken environment on our Build-Server. It is actual for VS2017 too.
 @REM  and we are getting the empty SDK40ToolsPath.
@@ -37,16 +31,13 @@ ECHO Prepare the development environment.
 @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
 @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 @REM
-ECHO CALL %env_vs2017_dev_cmd%
-CALL %env_vs2017_dev_cmd%
+ECHO CALL %env_vs2019_dev_cmd%
+CALL %env_vs2019_dev_cmd%
 CALL %env_qUtil%\exit_if_error
 
 
-@REM We have to use exactly the "DevEnv.COM" wrapper of the VS IDE "DevEnv.EXE". There are some troubles with "DevEnv.EXE".
-@REM So, here we explicitly prevent cases where ".COM" not the first value at the PATHEXT environment variable.
-@REM Example of the problem - PATHEXT: ".EXE;.COM;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"
-ECHO CALL DevEnv.COM %*
-CALL DevEnv.COM %*
+ECHO CALL VSTest.Console.exe  %*
+CALL VSTest.Console.exe  %*
 CALL %env_qUtil%\exit_if_error
 
 

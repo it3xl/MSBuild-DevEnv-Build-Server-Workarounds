@@ -12,7 +12,7 @@ SET invokePath=%invokePath:"=%
 CALL "%invokePath%\util\set-environment.bat"
 CALL %env_qUtil%\exit_if_error
 
-CALL "%invokePath%\set-manager-environment.bat"
+CALL "%invokePath%\set-manager-environment.2017.bat"
 CALL %env_qUtil%\exit_if_error
 
 

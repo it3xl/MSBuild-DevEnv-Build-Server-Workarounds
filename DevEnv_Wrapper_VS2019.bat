@@ -12,7 +12,7 @@ SET invokePath=%invokePath:"=%
 CALL "%invokePath%\util\set-environment.bat"
 CALL %env_qUtil%\exit_if_error
 
-CALL "%invokePath%\set-manager-environment.2017.bat"
+CALL "%invokePath%\set-manager-environment.2019.bat"
 CALL %env_qUtil%\exit_if_error
 
 
@@ -24,7 +24,7 @@ SET MSBUILDDISABLENODEREUSE=1
 
 
 @REM Uncomment the following workarounds as needed.
-REM CALL %env_qManager%\workaround\DevEnv-Vdproj-VS2017_Professional-HRESULT-8000000A-EnableOutOfProcBuild.bat
+REM CALL %env_qManager%\workaround\DevEnv-Vdproj-VS2019_Professional-HRESULT-8000000A-EnableOutOfProcBuild.bat
 CALL %env_qManager%\workaround\MSBuild-File-System-Redirector-fail-System32-to-SysWOW64.bat
 REM CALL %env_qManager%\workaround\MSBuild-Unable-to-create-Temp-directory.bat
 
@@ -37,8 +37,8 @@ ECHO Prepare the development environment.
 @REM http://stackoverflow.com/questions/34045326/msbuild-sgen-exe-is-missing
 @REM http://stackoverflow.com/questions/26442450/why-is-visual-studio-2013-using-the-wrong-sdktoolspath-for-lc-exe
 @REM
-ECHO CALL %env_vs2017_dev_cmd%
-CALL %env_vs2017_dev_cmd%
+ECHO CALL %env_vs2019_dev_cmd%
+CALL %env_vs2019_dev_cmd%
 CALL %env_qUtil%\exit_if_error
 
 
